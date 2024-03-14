@@ -1,4 +1,4 @@
-package lhepper.example.samurisespringbootbackend;
+package com.lhepper.samurisespringbootbackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
