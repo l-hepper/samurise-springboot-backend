@@ -5,12 +5,6 @@ public class TestObject {
     private String speedField;
     private String momentumField;
 
-    public TestObject(String violenceField, String speedField, String momentumField) {
-        this.violenceField = violenceField;
-        this.speedField = speedField;
-        this.momentumField = momentumField;
-    }
-
     public String getViolence() {
         return violenceField;
     }
@@ -21,5 +15,17 @@ public class TestObject {
 
     public String getMomentum() {
         return momentumField;
+    }
+
+    public void setViolence(String string) {
+        this.violenceField = string;
+    }
+
+    public void setSpeed(String string) {
+        this.speedField = string;
+    }
+
+    public void setMomentum(String string) {
+        this.momentumField = string;
     }
 }
