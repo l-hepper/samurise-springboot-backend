@@ -2,7 +2,6 @@ package com.lhepper.samurisespringbootbackend.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.stereotype.Repository;
 
@@ -27,17 +26,7 @@ public class SamuriseRepository {
 
     List<Day> days = new ArrayList<>(List.of(new Day()));
 
-    @SuppressWarnings("null")
-    public Day getDayByID(UUID id) {
-        // TODO - if the day cannot be found by the ID then ensure that this is handled
-        Day result = null;
-        System.out.println("REPO - getDayByID ==== " + id.toString() + " ===="); // TODO - for testing
-        for (Day day : days) {
-            if (day.getId().toString().equals(id.toString())) {
-                result = day;
-            }
-        }
-        System.out.println(result.getId().toString());
-        return result;
+    public List<Day> getDays() {
+        return days;
     }
 }

@@ -2,6 +2,7 @@ package com.lhepper.samurisespringbootbackend.service;
 
 import java.util.UUID;
 
+import com.lhepper.samurisespringbootbackend.exception.NoDayException;
 import com.lhepper.samurisespringbootbackend.pojo.Day;
 import com.lhepper.samurisespringbootbackend.pojo.TestObject;
 
@@ -11,7 +12,7 @@ public interface SamuriseService {
     TestObject getObjectByIndex(int index); // testonly
     void saveObject(TestObject testObject); // testonly
 
-    Day getDayByID(UUID id);
+    Day getDayByID(UUID id) throws NoDayException;
 
 
 }

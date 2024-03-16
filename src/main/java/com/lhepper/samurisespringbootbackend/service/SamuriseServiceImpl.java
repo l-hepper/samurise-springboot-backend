@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lhepper.samurisespringbootbackend.exception.NoDayException;
 import com.lhepper.samurisespringbootbackend.pojo.Day;
 import com.lhepper.samurisespringbootbackend.pojo.TestObject;
 import com.lhepper.samurisespringbootbackend.repository.SamuriseRepository;
@@ -30,9 +31,23 @@ public class SamuriseServiceImpl implements SamuriseService {
     }
 
     @Override
-    public Day getDayByID(UUID id) {
-        return samuriseRepository.getDayByID(id);
+    public Day getDayByID(UUID id) throws NoDayException {
+        List<Day> days = samuriseRepository.getDays();
+        Day result = null;
+
+        System.out.println("REPO - getDayByID ==== " + id.toString() + " ===="); // TODO - for testing
+
+        for (Day day : days) {
+            if (day.getId().toString().equals(id.toString())) {
+                result = day;
+            }
+        }
+
+        if (result == null) {
+            throw new NoDayException();
+        }
+
+        return result;
     }
 
-    
 }
