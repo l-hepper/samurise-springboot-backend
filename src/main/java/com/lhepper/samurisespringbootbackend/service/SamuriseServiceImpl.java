@@ -1,12 +1,13 @@
 package com.lhepper.samurisespringbootbackend.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lhepper.samurisespringbootbackend.pojo.Day;
 import com.lhepper.samurisespringbootbackend.pojo.TestObject;
-import com.lhepper.samurisespringbootbackend.pojo.TimeBlock;
 import com.lhepper.samurisespringbootbackend.repository.SamuriseRepository;
 
 @Service
@@ -29,19 +30,9 @@ public class SamuriseServiceImpl implements SamuriseService {
     }
 
     @Override
-    public TimeBlock getTimeBlockByIndex(int index) {
-        List<TimeBlock> list = samuriseRepository.getTimeBlockArray();
-        return list.get(index);
+    public Day getDayByID(UUID id) {
+        return samuriseRepository.getDayByID(id);
     }
 
-    @Override
-    public List<TimeBlock> getTimeBlockArray() {
-        return samuriseRepository.getTimeBlockArray();
-    }
-
-    @Override
-    public void addTimeBlockObject(TimeBlock timeBlock) {
-        samuriseRepository.addTimeBlock(timeBlock);
-    }
-
+    
 }

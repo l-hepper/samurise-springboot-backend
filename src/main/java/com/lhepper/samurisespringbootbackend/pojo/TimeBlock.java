@@ -8,17 +8,38 @@ public class TimeBlock {
     private boolean startOfBlock;
     private String color;
 
-    public TimeBlock(String name, String startTime, String endTime, boolean scheduled, boolean startOfBlock,
+    public TimeBlock(String name, String startTime, boolean scheduled, boolean startOfBlock,
             String color) {
         this.name = name;
         this.startTime = startTime;
-        this.endTime = endTime;
+        this.endTime = calculateEndTime(startTime);
         this.scheduled = scheduled;
         this.startOfBlock = startOfBlock;
         this.color = color;
     }
 
-    public TimeBlock() {}
+    public String calculateEndTime(String startTime) {
+        if (startTime.length() == 4) {
+            if (startTime.substring(2).equals("45")) {
+                int nextHour = Integer.valueOf(startTime.substring(0, 1)) + 1;
+                startTime = nextHour + ":00";
+            } else {
+                String pain = startTime.substring(2);
+                int painInt = Integer.valueOf(pain) + 15;
+                startTime = startTime.substring(0, 2) + painInt;
+            }
+        } else {
+            if (startTime.substring(3).equals("45")) {
+                startTime = (Integer.valueOf(startTime.substring(0, 2)) + 1) + ":00";
+            } else {
+                startTime = startTime.substring(0, 2) + ":" + (Integer.valueOf(startTime.substring(3)) + 15);
+            }
+        }
+        return startTime;
+    }
+
+    public TimeBlock() {
+    }
 
     public String getName() {
         return name;
@@ -28,11 +49,11 @@ public class TimeBlock {
         this.name = name;
     }
 
-    public String getStartTime() {
+    public String getstartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setstartTime(String startTime) {
         this.startTime = startTime;
     }
 

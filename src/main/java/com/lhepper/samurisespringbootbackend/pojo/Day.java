@@ -1,19 +1,51 @@
 package com.lhepper.samurisespringbootbackend.pojo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 public class Day {
+    private UUID id;
     private Date date;
-    private int dayStart;
+    private int dayStartTime;
     private int dayLength;
-    private TimeBlock[] timeBlockArray;
+    private List<TimeBlock> timeBlockPlanner;
     private TaskList[] taskListArray;
 
-    public Day(Date date, int dayStart, int dayLength, TimeBlock[] timeBlockArray) {
-        this.date = date;
-        this.dayStart = dayStart;
-        this.dayLength = dayLength;
-        this.timeBlockArray = timeBlockArray;
+    public Day() {
+        this.id = UUID.randomUUID();
+        this.date = new Date();
+        this.dayStartTime = 9;
+        this.dayLength = 8;
+        this.timeBlockPlanner = populateTimeBlockPlanner(dayStartTime, dayLength);
+        this.taskListArray = null;
+        System.out.println("==== DAY ID : " + id + " ====");
+    }
+
+    // when a new day is created the timeBlockPlanner structure is updated to
+    // reflect an empty, non-scheduled day
+    public List<TimeBlock> populateTimeBlockPlanner(int dayStartTime, int dayLength) {
+
+        List<TimeBlock> result = new ArrayList<>();
+
+        String[] timeBlockEndings = { ":00", ":15", ":30", ":45" };
+        for (int i = 0; i < dayLength; i++) {
+            for (int j = 0; j < 4; j++) {
+                result.add(new TimeBlock("Testing", (int) (dayLength + i) + timeBlockEndings[j], false, false,
+                        "gray"));
+            }
+        }
+
+        return result;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public Date getDate() {
@@ -24,28 +56,28 @@ public class Day {
         this.date = date;
     }
 
-    public int getDayStart() {
-        return dayStart;
+    public int getdayStartTime() {
+        return dayStartTime;
     }
 
-    public void setDayStart(int dayStart) {
-        this.dayStart = dayStart;
+    public void setdayStartTime(int dayStartTime) {
+        this.dayStartTime = dayStartTime;
     }
 
-    public int getDayLength() {
+    public int getdayLength() {
         return dayLength;
     }
 
-    public void setDayLength(int dayLength) {
+    public void setdayLength(int dayLength) {
         this.dayLength = dayLength;
     }
 
-    public TimeBlock[] getTimeBlockArray() {
-        return timeBlockArray;
+    public List<TimeBlock> gettimeBlockPlanner() {
+        return timeBlockPlanner;
     }
 
-    public void setTimeBlockArray(TimeBlock[] timeBlockArray) {
-        this.timeBlockArray = timeBlockArray;
+    public void settimeBlockPlanner(List<TimeBlock> timeBlockPlanner) {
+        this.timeBlockPlanner = timeBlockPlanner;
     }
 
     public TaskList[] getTaskListArray() {

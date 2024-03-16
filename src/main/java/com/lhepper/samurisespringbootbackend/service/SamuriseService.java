@@ -1,9 +1,9 @@
 package com.lhepper.samurisespringbootbackend.service;
 
-import java.util.List;
+import java.util.UUID;
 
+import com.lhepper.samurisespringbootbackend.pojo.Day;
 import com.lhepper.samurisespringbootbackend.pojo.TestObject;
-import com.lhepper.samurisespringbootbackend.pojo.TimeBlock;
 
 public interface SamuriseService {
 
@@ -11,9 +11,7 @@ public interface SamuriseService {
     TestObject getObjectByIndex(int index); // testonly
     void saveObject(TestObject testObject); // testonly
 
-    TimeBlock getTimeBlockByIndex(int index);
-    List<TimeBlock> getTimeBlockArray();
+    Day getDayByID(UUID id);
 
-    void addTimeBlockObject(TimeBlock timeBlock);
 
 }
