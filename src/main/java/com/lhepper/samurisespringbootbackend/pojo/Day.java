@@ -30,7 +30,7 @@ public class Day {
         List<TimeBlock> result = new ArrayList<>();
 
         String[] timeBlockEndings = { ":00", ":15", ":30", ":45" };
-        for (int i = 0; i < dayLength; i++) {
+        for (int i = 0; i <= dayLength; i++) {
             for (int j = 0; j < 4; j++) {
                 result.add(new TimeBlock((int) (dayLength + i) + timeBlockEndings[j]));
             }
