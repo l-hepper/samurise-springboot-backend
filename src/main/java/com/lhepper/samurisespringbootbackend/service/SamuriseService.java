@@ -14,4 +14,6 @@ public interface SamuriseService {
     TimeBlock getTimeBlockByIndex(int index);
     List<TimeBlock> getTimeBlockArray();
 
+    void addTimeBlockObject(TimeBlock timeBlock);
+
 }

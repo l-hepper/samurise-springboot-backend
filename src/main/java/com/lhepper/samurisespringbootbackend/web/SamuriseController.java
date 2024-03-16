@@ -46,6 +46,9 @@ public class SamuriseController {
         return new ResponseEntity<>(samuriseService.getTimeBlockArray(), HttpStatus.OK);
     }
 
-
-
+    @PostMapping("/create-timeblock")
+    public ResponseEntity<HttpStatus> createTimeBlock(@RequestBody TimeBlock timeBlock) {
+        samuriseService.addTimeBlockObject(timeBlock);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }

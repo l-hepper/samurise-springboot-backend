@@ -24,10 +24,7 @@ public class SamuriseRepository {
         list.add(object);
     }
 
-    List<TimeBlock> timeBlockArray = new ArrayList<>(
-            List.of(
-                    new TimeBlock("Anki", "10:15", "11:00", true, false, "green"),
-                    new TimeBlock("Workout", "09:00", "10:00", true, true, "gray")));
+    List<TimeBlock> timeBlockArray = new ArrayList<>();
 
     public List<TimeBlock> getTimeBlockArray() {
         return timeBlockArray;

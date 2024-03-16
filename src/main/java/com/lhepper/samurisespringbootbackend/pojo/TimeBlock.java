@@ -18,6 +18,8 @@ public class TimeBlock {
         this.color = color;
     }
 
+    public TimeBlock() {}
+
     public String getName() {
         return name;
     }

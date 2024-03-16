@@ -1,5 +1,6 @@
 package com.lhepper.samurisespringbootbackend.pojo;
 
+// used for testing only
 public class TestObject {
     private String violenceField;
     private String speedField;

@@ -9,5 +9,4 @@ public class SamuriseSpringbootBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SamuriseSpringbootBackendApplication.class, args);
 	}
-
 }

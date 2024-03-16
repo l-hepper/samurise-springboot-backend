@@ -39,4 +39,9 @@ public class SamuriseServiceImpl implements SamuriseService {
         return samuriseRepository.getTimeBlockArray();
     }
 
+    @Override
+    public void addTimeBlockObject(TimeBlock timeBlock) {
+        samuriseRepository.addTimeBlock(timeBlock);
+    }
+
 }
