@@ -11,7 +11,7 @@ public class Day {
     private int dayStartTime;
     private int dayLength;
     private List<TimeBlock> timeBlockPlanner;
-    private TaskList[] taskListArray;
+    private List<TaskList> taskListsForTheDay;
 
     public Day() {
         this.id = UUID.randomUUID();
@@ -19,7 +19,7 @@ public class Day {
         this.dayStartTime = 9;
         this.dayLength = 8;
         this.timeBlockPlanner = populateTimeBlockPlanner(dayStartTime, dayLength);
-        this.taskListArray = null;
+        this.taskListsForTheDay = new ArrayList<>();
         System.out.println("==== DAY ID : " + id + " ====");
     }
 
@@ -32,8 +32,7 @@ public class Day {
         String[] timeBlockEndings = { ":00", ":15", ":30", ":45" };
         for (int i = 0; i < dayLength; i++) {
             for (int j = 0; j < 4; j++) {
-                result.add(new TimeBlock("Testing", (int) (dayLength + i) + timeBlockEndings[j], false, false,
-                        "gray"));
+                result.add(new TimeBlock((int) (dayLength + i) + timeBlockEndings[j]));
             }
         }
 
@@ -80,11 +79,11 @@ public class Day {
         this.timeBlockPlanner = timeBlockPlanner;
     }
 
-    public TaskList[] getTaskListArray() {
-        return taskListArray;
+    public List<TaskList> getTaskListsForTheDay() {
+        return taskListsForTheDay;
     }
 
-    public void setTaskListArray(TaskList[] taskListArray) {
-        this.taskListArray = taskListArray;
+    public void setTaskListArray(List<TaskList> taskListsForTheDay) {
+        this.taskListsForTheDay = taskListsForTheDay;
     }
 }

@@ -8,14 +8,13 @@ public class TimeBlock {
     private boolean startOfBlock;
     private String color;
 
-    public TimeBlock(String name, String startTime, boolean scheduled, boolean startOfBlock,
-            String color) {
-        this.name = name;
+    public TimeBlock(String startTime) {
+        this.name = null;
         this.startTime = startTime;
         this.endTime = calculateEndTime(startTime);
-        this.scheduled = scheduled;
-        this.startOfBlock = startOfBlock;
-        this.color = color;
+        this.scheduled = false;
+        this.startOfBlock = false;
+        this.color = "gray";
     }
 
     public String calculateEndTime(String startTime) {
