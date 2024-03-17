@@ -1,40 +1,24 @@
 package com.lhepper.samurisespringbootbackend.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 // used for testing only
 @Entity
+@Getter
+@Setter
 public class TestObject {
 
     @Id
-    private int id = 123;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     private String violenceField;
     private String speedField;
     private String momentumField;
 
-    public String getViolence() {
-        return violenceField;
-    }
-
-    public String getSpeed() {
-        return speedField;
-    }
-
-    public String getMomentum() {
-        return momentumField;
-    }
-
-    public void setViolence(String string) {
-        this.violenceField = string;
-    }
-
-    public void setSpeed(String string) {
-        this.speedField = string;
-    }
-
-    public void setMomentum(String string) {
-        this.momentumField = string;
-    }
 }

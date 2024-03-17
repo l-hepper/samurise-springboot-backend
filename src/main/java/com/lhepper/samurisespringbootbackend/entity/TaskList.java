@@ -1,7 +1,10 @@
 package com.lhepper.samurisespringbootbackend.entity;
 
 public class TaskList {
+
+    private String id;
     private String name;
+
     private TaskItem[] taskItems;
 
     public String getName() {

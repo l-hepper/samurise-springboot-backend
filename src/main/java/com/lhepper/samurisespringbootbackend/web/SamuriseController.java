@@ -1,5 +1,6 @@
 package com.lhepper.samurisespringbootbackend.web;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +23,15 @@ public class SamuriseController {
     SamuriseService samuriseService;
 
     // testing only
-    @GetMapping("/thedoc/{index}")
-    public ResponseEntity<TestObject> getAnObject(@PathVariable int index) {
-        TestObject requestedObject = samuriseService.getObjectByIndex(index);
+    @GetMapping("/get-object/{id}")
+    public ResponseEntity<Optional<TestObject>> getObject(@PathVariable int id) {
+        Optional<TestObject> requestedObject = samuriseService.getObjectById(id);
         return new ResponseEntity<>(requestedObject, HttpStatus.OK);
     }
 
     // testing only
-    @PostMapping("/createdoc")
-    public ResponseEntity<HttpStatus> createDoc(@RequestBody TestObject testObject) {
+    @PostMapping("/create-object")
+    public ResponseEntity<HttpStatus> createObject(@RequestBody TestObject testObject) {
         samuriseService.saveObject(testObject);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
