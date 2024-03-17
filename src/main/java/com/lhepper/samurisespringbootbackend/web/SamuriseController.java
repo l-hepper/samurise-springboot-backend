@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lhepper.samurisespringbootbackend.exception.NoDayException;
 import com.lhepper.samurisespringbootbackend.pojo.Day;
 import com.lhepper.samurisespringbootbackend.pojo.TestObject;
 import com.lhepper.samurisespringbootbackend.service.SamuriseService;
@@ -38,14 +37,7 @@ public class SamuriseController {
 
     @GetMapping("/getCurrentDay/{id}")
     public ResponseEntity<Day> getCurrentDay(@PathVariable UUID id) {
-        try {
-            Day day = samuriseService.getDayByID(id);
-            return new ResponseEntity<>(day, HttpStatus.OK);
-        } catch (NoDayException e) {
-            System.err.println("No Day Found for UUID:" + id);
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        Day day = samuriseService.getDayByID(id);
+        return new ResponseEntity<>(day, HttpStatus.OK);
     }
 }
