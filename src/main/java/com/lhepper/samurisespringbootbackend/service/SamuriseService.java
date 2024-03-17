@@ -2,9 +2,9 @@ package com.lhepper.samurisespringbootbackend.service;
 
 import java.util.UUID;
 
+import com.lhepper.samurisespringbootbackend.entity.Day;
+import com.lhepper.samurisespringbootbackend.entity.TestObject;
 import com.lhepper.samurisespringbootbackend.exception.ResourceNotFoundException;
-import com.lhepper.samurisespringbootbackend.pojo.Day;
-import com.lhepper.samurisespringbootbackend.pojo.TestObject;
 
 public interface SamuriseService {
 

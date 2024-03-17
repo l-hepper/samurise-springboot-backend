@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lhepper.samurisespringbootbackend.pojo.Day;
-import com.lhepper.samurisespringbootbackend.pojo.TestObject;
+import com.lhepper.samurisespringbootbackend.entity.Day;
+import com.lhepper.samurisespringbootbackend.entity.TestObject;
 import com.lhepper.samurisespringbootbackend.service.SamuriseService;
 
 @RestController

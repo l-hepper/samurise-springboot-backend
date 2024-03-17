@@ -1,7 +1,15 @@
-package com.lhepper.samurisespringbootbackend.pojo;
+package com.lhepper.samurisespringbootbackend.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 // used for testing only
+@Entity
 public class TestObject {
+
+    @Id
+    private int id = 123;
+
     private String violenceField;
     private String speedField;
     private String momentumField;

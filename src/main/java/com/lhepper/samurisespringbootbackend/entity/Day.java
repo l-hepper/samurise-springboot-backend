@@ -1,4 +1,4 @@
-package com.lhepper.samurisespringbootbackend.pojo;
+package com.lhepper.samurisespringbootbackend.entity;
 
 import java.util.ArrayList;
 import java.util.Date;

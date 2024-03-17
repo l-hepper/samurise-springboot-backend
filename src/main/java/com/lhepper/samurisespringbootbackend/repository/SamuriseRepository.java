@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.lhepper.samurisespringbootbackend.pojo.Day;
-import com.lhepper.samurisespringbootbackend.pojo.TestObject;
+import com.lhepper.samurisespringbootbackend.entity.Day;
+import com.lhepper.samurisespringbootbackend.entity.TestObject;
 
 @Repository
 public class SamuriseRepository {

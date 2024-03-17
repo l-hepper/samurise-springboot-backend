@@ -6,9 +6,9 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lhepper.samurisespringbootbackend.entity.Day;
+import com.lhepper.samurisespringbootbackend.entity.TestObject;
 import com.lhepper.samurisespringbootbackend.exception.ResourceNotFoundException;
-import com.lhepper.samurisespringbootbackend.pojo.Day;
-import com.lhepper.samurisespringbootbackend.pojo.TestObject;
 import com.lhepper.samurisespringbootbackend.repository.SamuriseRepository;
 
 @Service

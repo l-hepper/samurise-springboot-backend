@@ -1,4 +1,4 @@
-package com.lhepper.samurisespringbootbackend.pojo;
+package com.lhepper.samurisespringbootbackend.entity;
 
 public class TaskItem {
     private String name;
