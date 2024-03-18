@@ -1,16 +1,14 @@
 package com.lhepper.samurisespringbootbackend.exception;
 
-import java.util.UUID;
-
 // thrown when the requested day ID is not available in the database
 public class ResourceNotFoundException extends RuntimeException {
-    private String id;
+    private long id;
 
-    public ResourceNotFoundException(UUID id) {
-        this.id = id.toString();
+    public ResourceNotFoundException(long id) {
+        this.id = id;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 

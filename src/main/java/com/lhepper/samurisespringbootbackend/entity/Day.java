@@ -3,10 +3,21 @@ package com.lhepper.samurisespringbootbackend.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "day_object")
 public class Day {
-    private UUID id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private Date date;
     private int dayStartTime;
     private int dayLength;
@@ -14,7 +25,6 @@ public class Day {
     private List<TaskList> taskListsForTheDay;
 
     public Day() {
-        this.id = UUID.randomUUID();
         this.date = new Date();
         this.dayStartTime = 9;
         this.dayLength = 8;
@@ -39,11 +49,11 @@ public class Day {
         return result;
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 

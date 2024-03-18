@@ -1,10 +1,31 @@
 package com.lhepper.samurisespringbootbackend.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class TimeBlock {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(name = "day_id")
+    private long dayID;
+
     private String name;
+
+    @Column(name = "start_time")
     private String startTime;
+
+    @Column(name = "end_time")
     private String endTime;
     private boolean scheduled;
+
+    @Column(name = "start_of_block")
     private boolean startOfBlock;
     private String color;
 
@@ -15,6 +36,9 @@ public class TimeBlock {
         this.scheduled = false;
         this.startOfBlock = false;
         this.color = "gray";
+    }
+
+    public TimeBlock() {
     }
 
     public String calculateEndTime(String startTime) {
@@ -37,15 +61,20 @@ public class TimeBlock {
         return startTime;
     }
 
-    public TimeBlock() {
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public long getDayID() {
+        return dayID;
+    }
+
+    public void setDayID(long dayID) {
+        this.dayID = dayID;
     }
 
     public String getstartTime() {
