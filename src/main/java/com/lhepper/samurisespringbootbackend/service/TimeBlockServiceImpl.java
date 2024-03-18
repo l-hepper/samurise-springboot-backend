@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.lhepper.samurisespringbootbackend.entity.TimeBlock;
 import com.lhepper.samurisespringbootbackend.exception.ResourceNotFoundException;
+import com.lhepper.samurisespringbootbackend.pojo.TimeBlockEventInformation;
 import com.lhepper.samurisespringbootbackend.repository.TimeBlockRepository;
 
 @Service
@@ -24,5 +25,29 @@ public class TimeBlockServiceImpl implements TimeBlockService {
     public TimeBlock getTimeBlockByID(long id) {
         Optional<TimeBlock> foundTimeBlock = timeBlockRepository.findById(id);
         return foundTimeBlock.orElseThrow(() -> new ResourceNotFoundException(id));
+    }
+
+    @Override
+    public void createTimeBlockEvent(TimeBlockEventInformation timeBlockEventInformation) {
+        Optional<TimeBlock> startTimeBlockOption = timeBlockRepository
+                .findById(timeBlockEventInformation.getTimeBlockId());
+        if (startTimeBlockOption.isPresent()) {
+            TimeBlock startTimeBlock = startTimeBlockOption.get();
+            startTimeBlock.setStartOfBlock(true);
+            startTimeBlock.setScheduled(true);
+            startTimeBlock.setName(timeBlockEventInformation.getName());
+            timeBlockRepository.save(startTimeBlock);
+        }
+
+        for (long i = timeBlockEventInformation.getTimeBlockId(); i < timeBlockEventInformation.getTimeBlockId()
+                + timeBlockEventInformation.getLength(); i++) {
+            Optional<TimeBlock> updateTimeBlockOption = timeBlockRepository.findById(i);
+            if (updateTimeBlockOption.isPresent()) {
+                TimeBlock updateTimeBlock = updateTimeBlockOption.get();
+                updateTimeBlock.setScheduled(true);
+                updateTimeBlock.setName(timeBlockEventInformation.getName());
+                timeBlockRepository.save(updateTimeBlock);
+            }
+        }
     }
 }
