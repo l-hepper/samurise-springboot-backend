@@ -24,6 +24,7 @@ public class TaskList {
     private Day day;
 
     @OneToMany()
+    @JoinColumn(name ="tasklist_id", referencedColumnName = "id")
     private List<TaskItem> taskItems;
 
     public String getName() {

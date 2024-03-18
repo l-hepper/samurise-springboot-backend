@@ -63,9 +63,9 @@ public class Day {
     @PrePersist
     public void prePersist() {
         String[] timeBlockEndings = { ":00", ":15", ":30", ":45" };
-        for (int i = 1; i <= dayLength; i++) {
+        for (int i = 0; i < dayLength; i++) {
             for (int j = 0; j < 4; j++) {
-                TimeBlock newTimeBlock = new TimeBlock((int) (dayLength + i) + timeBlockEndings[j]);
+                TimeBlock newTimeBlock = new TimeBlock((int) (dayStartTime + i) + timeBlockEndings[j]);
                 newTimeBlock.setDay(this);
                 this.timeBlocks.add(newTimeBlock);
             }
