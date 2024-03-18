@@ -7,5 +7,6 @@ public interface DayService {
 
     Day getDayByID(Long id) throws ResourceNotFoundException;
     void createDay(Day day);
+    Day updateDay(long id, Day day);
 
 }

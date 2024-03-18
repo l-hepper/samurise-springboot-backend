@@ -25,4 +25,13 @@ public class DayServiceImpl implements DayService {
     public void createDay(Day day) {
         dayRepository.save(day);
     }
+
+    @Override
+    public Day updateDay(long id, Day newDay) {
+        Day oldDay = dayRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+        oldDay.setDate(newDay.getDate());
+        oldDay.setdayLength(newDay.getdayLength());
+        oldDay.setdayStartTime(newDay.getdayStartTime());
+        return dayRepository.save(oldDay);
+    }
 }

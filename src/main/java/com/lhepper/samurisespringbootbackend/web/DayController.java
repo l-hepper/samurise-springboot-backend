@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,5 +29,11 @@ public class DayController {
     public ResponseEntity<HttpStatus> createCurrentDay(@RequestBody Day day) {
         dayService.createDay(day);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PutMapping("update-day/{id}")
+    public ResponseEntity<Day> updateDay(@PathVariable long id, @RequestBody Day day) {
+        Day updatedDay = dayService.updateDay(id, day);
+        return new ResponseEntity<>(updatedDay, HttpStatus.ACCEPTED);
     }
 }
