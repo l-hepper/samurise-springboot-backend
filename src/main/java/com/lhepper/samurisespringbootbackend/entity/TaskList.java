@@ -1,11 +1,30 @@
 package com.lhepper.samurisespringbootbackend.entity;
 
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
+@Entity
 public class TaskList {
 
-    private String id;
-    private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    private TaskItem[] taskItems;
+    private String name; // will math the block name associated with this task list
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name ="day_id", referencedColumnName = "id")
+    private Day day;
+
+    @OneToMany()
+    private List<TaskItem> taskItems;
 
     public String getName() {
         return name;
@@ -15,11 +34,11 @@ public class TaskList {
         this.name = name;
     }
 
-    public TaskItem[] getTaskItems() {
+    public List<TaskItem> getTaskItems() {
         return taskItems;
     }
 
-    public void setTaskItems(TaskItem[] taskItems) {
+    public void setTaskItems(List<TaskItem> taskItems) {
         this.taskItems = taskItems;
     }
 }

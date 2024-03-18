@@ -34,7 +34,8 @@ public class Day {
     @OneToMany(mappedBy = "day", cascade = CascadeType.ALL)
     private List<TimeBlock> timeBlocks = new ArrayList<>();
 
-    // private List<TaskList> taskListsForTheDay;
+    @OneToMany(mappedBy = "day", cascade = CascadeType.ALL)
+    private List<TaskList> taskLists = new ArrayList<>();
 
     public Day() {
         this.date = LocalDate.now();

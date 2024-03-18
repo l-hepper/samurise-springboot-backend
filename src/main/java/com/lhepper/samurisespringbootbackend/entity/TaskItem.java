@@ -1,8 +1,24 @@
 package com.lhepper.samurisespringbootbackend.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
+@Entity
 public class TaskItem {
-    private String name;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @ManyToOne
+    @JoinColumn(name ="tasklist_id", referencedColumnName = "id")
+    private TaskList taskList;
+
+    private String name; // name of the task i.e.
     private boolean complete;
 
     public String getName() {
