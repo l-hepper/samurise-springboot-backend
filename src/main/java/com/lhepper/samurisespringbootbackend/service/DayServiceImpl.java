@@ -20,4 +20,9 @@ public class DayServiceImpl implements DayService {
         Optional<Day> foundDay = dayRepository.findById(id);
         return foundDay.orElseThrow(() -> new ResourceNotFoundException(id));
     }
+
+    @Override
+    public void createDay(Day day) {
+        dayRepository.save(day);
+    }
 }

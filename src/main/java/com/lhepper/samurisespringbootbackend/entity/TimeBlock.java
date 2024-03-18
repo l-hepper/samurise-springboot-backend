@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 
 @Entity
 public class TimeBlock {
@@ -13,8 +16,9 @@ public class TimeBlock {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "day_id")
-    private long dayID;
+    @ManyToOne(optional = false)
+    @JoinColumn(name ="day_id", referencedColumnName = "id")
+    private Day day;
 
     private String name;
 
@@ -39,6 +43,10 @@ public class TimeBlock {
     }
 
     public TimeBlock() {
+    }
+
+    public void setDay(Day day) {
+        this.day = day;
     }
 
     public String calculateEndTime(String startTime) {
@@ -67,14 +75,6 @@ public class TimeBlock {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public long getDayID() {
-        return dayID;
-    }
-
-    public void setDayID(long dayID) {
-        this.dayID = dayID;
     }
 
     public String getstartTime() {
