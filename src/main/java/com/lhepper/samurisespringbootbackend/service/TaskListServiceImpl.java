@@ -15,6 +15,7 @@ public class TaskListServiceImpl implements TaskListService {
     @Autowired
     TaskListRepository taskListRepository;
 
+    // called only by the creation of a timeblock event
     @Override
     public void createTaskList(TaskList taskList) {
         taskListRepository.save(taskList);
@@ -28,5 +29,15 @@ public class TaskListServiceImpl implements TaskListService {
         } else {
             throw new ResourceNotFoundException(id);
         }
+    }
+
+    @Override
+    public void deleteTaskList(long id) {
+        taskListRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteByTimeBlockId(long id) {
+        taskListRepository.deleteByTimeBlock(id);
     }
 }

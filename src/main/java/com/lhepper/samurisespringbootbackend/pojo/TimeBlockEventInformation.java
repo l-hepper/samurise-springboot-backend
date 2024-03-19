@@ -5,6 +5,15 @@ public class TimeBlockEventInformation {
     private int length;
     private long timeBlockId;
     private long dayID;
+    private long taskListId;
+
+    public long getTaskListId() {
+        return taskListId;
+    }
+
+    public void setTaskListId(long taskListId) {
+        this.taskListId = taskListId;
+    }
 
     public long getDayID() {
         return dayID;

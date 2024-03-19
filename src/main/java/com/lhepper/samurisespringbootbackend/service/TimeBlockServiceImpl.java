@@ -89,8 +89,7 @@ public class TimeBlockServiceImpl implements TimeBlockService {
                 timeBlockRepository.save(updateTimeBlock);
             }
         }
-
-        
+        taskListService.deleteTaskList(timeBlockEventInformation.getTaskListId());
 
         return true;
     }
