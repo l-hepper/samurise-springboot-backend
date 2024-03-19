@@ -1,6 +1,11 @@
 package com.lhepper.samurisespringbootbackend.entity;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.lhepper.samurisespringbootbackend.service.DayService;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,12 +25,20 @@ public class TaskList {
     private String name; // will math the block name associated with this task list
 
     @ManyToOne(optional = false)
-    @JoinColumn(name ="day_id", referencedColumnName = "id")
+    @JoinColumn(name = "day_id", referencedColumnName = "id")
     private Day day;
 
     @OneToMany()
-    @JoinColumn(name ="tasklist_id", referencedColumnName = "id")
-    private List<TaskItem> taskItems;
+    @JoinColumn(name = "tasklist_id", referencedColumnName = "id")
+    private List<TaskItem> taskItems = new ArrayList<>();
+
+    public TaskList(String name, Day day) {
+        this.name = name;
+        this.day = day;
+    }
+
+    public TaskList() {
+    }
 
     public String getName() {
         return name;

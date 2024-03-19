@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lhepper.samurisespringbootbackend.entity.TaskList;
 import com.lhepper.samurisespringbootbackend.entity.TimeBlock;
 import com.lhepper.samurisespringbootbackend.exception.ResourceNotFoundException;
 import com.lhepper.samurisespringbootbackend.pojo.TimeBlockEventInformation;
@@ -15,6 +16,12 @@ public class TimeBlockServiceImpl implements TimeBlockService {
 
     @Autowired
     TimeBlockRepository timeBlockRepository;
+
+    @Autowired
+    TaskListService taskListService;
+
+    @Autowired
+    DayService dayService;
 
     @Override
     public void createTimeBlock(TimeBlock timeBlock) {
@@ -51,6 +58,11 @@ public class TimeBlockServiceImpl implements TimeBlockService {
                 timeBlockRepository.save(updateTimeBlock);
             }
         }
+
+        System.out.println("dayID: " + timeBlockEventInformation.getDayID());
+        TaskList newTaskList = new TaskList(timeBlockEventInformation.getName(), dayService.getDayByID(timeBlockEventInformation.getDayID()));
+        taskListService.createTaskList(newTaskList);
+        
     }
 
     @Override

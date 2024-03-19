@@ -4,6 +4,15 @@ public class TimeBlockEventInformation {
     private String name;
     private int length;
     private long timeBlockId;
+    private long dayID;
+
+    public long getDayID() {
+        return dayID;
+    }
+
+    public void setDayID(long dayID) {
+        this.dayID = dayID;
+    }
 
     public String getName() {
         return name;

@@ -15,11 +15,19 @@ public class TaskItem {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name ="tasklist_id", referencedColumnName = "id")
+    @JoinColumn(name = "tasklist_id", referencedColumnName = "id")
     private TaskList taskList;
 
     private String name; // name of the task i.e.
     private boolean complete;
+
+    public TaskItem(String name, TaskList taskList) {
+        this.name = name;
+        this.taskList = taskList;
+    }
+
+    public TaskItem() {
+    }
 
     public String getName() {
         return name;
