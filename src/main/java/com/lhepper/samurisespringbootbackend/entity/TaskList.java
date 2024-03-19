@@ -3,10 +3,7 @@ package com.lhepper.samurisespringbootbackend.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.lhepper.samurisespringbootbackend.service.DayService;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,7 +25,7 @@ public class TaskList {
     @JoinColumn(name = "day_id", referencedColumnName = "id")
     private Day day;
 
-    @OneToMany()
+    @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "tasklist_id", referencedColumnName = "id")
     private List<TaskItem> taskItems = new ArrayList<>();
 

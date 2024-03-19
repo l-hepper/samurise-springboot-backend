@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lhepper.samurisespringbootbackend.entity.TimeBlock;
-import com.lhepper.samurisespringbootbackend.exception.ResourceNotFoundException;
 import com.lhepper.samurisespringbootbackend.pojo.TimeBlockEventInformation;
 import com.lhepper.samurisespringbootbackend.service.TimeBlockService;
 
