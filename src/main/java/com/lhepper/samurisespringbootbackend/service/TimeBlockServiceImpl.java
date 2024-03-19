@@ -37,6 +37,8 @@ public class TimeBlockServiceImpl implements TimeBlockService {
             startTimeBlock.setScheduled(true);
             startTimeBlock.setName(timeBlockEventInformation.getName());
             timeBlockRepository.save(startTimeBlock);
+        } else {
+            new ResourceNotFoundException(timeBlockEventInformation.getTimeBlockId());
         }
 
         for (long i = timeBlockEventInformation.getTimeBlockId(); i < timeBlockEventInformation.getTimeBlockId()
@@ -49,5 +51,32 @@ public class TimeBlockServiceImpl implements TimeBlockService {
                 timeBlockRepository.save(updateTimeBlock);
             }
         }
+    }
+
+    @Override
+    public boolean deleteTimeBlockEvent(TimeBlockEventInformation timeBlockEventInformation) {
+        Optional<TimeBlock> startTimeBlockOption = timeBlockRepository
+                .findById(timeBlockEventInformation.getTimeBlockId());
+        if (startTimeBlockOption.isPresent()) {
+            TimeBlock startTimeBlock = startTimeBlockOption.get();
+            startTimeBlock.setStartOfBlock(false);
+            startTimeBlock.setScheduled(false);
+            startTimeBlock.setName(null);
+            timeBlockRepository.save(startTimeBlock);
+        } else {
+            return false;
+        }
+        
+        for (long i = timeBlockEventInformation.getTimeBlockId(); i < timeBlockEventInformation.getTimeBlockId()
+                + timeBlockEventInformation.getLength(); i++) {
+            Optional<TimeBlock> updateTimeBlockOption = timeBlockRepository.findById(i);
+            if (updateTimeBlockOption.isPresent()) {
+                TimeBlock updateTimeBlock = updateTimeBlockOption.get();
+                updateTimeBlock.setScheduled(false);
+                updateTimeBlock.setName(null);
+                timeBlockRepository.save(updateTimeBlock);
+            }
+        }
+        return true;
     }
 }

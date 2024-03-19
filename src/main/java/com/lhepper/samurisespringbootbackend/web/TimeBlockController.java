@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lhepper.samurisespringbootbackend.entity.TimeBlock;
+import com.lhepper.samurisespringbootbackend.exception.ResourceNotFoundException;
 import com.lhepper.samurisespringbootbackend.pojo.TimeBlockEventInformation;
 import com.lhepper.samurisespringbootbackend.service.TimeBlockService;
 
@@ -32,8 +33,16 @@ public class TimeBlockController {
     }
 
     @PostMapping("create-timeblock-event")
-    public ResponseEntity<HttpStatus> createTimeBlockEvent(@RequestBody TimeBlockEventInformation timeblockEventInformation) {
+    public ResponseEntity<HttpStatus> createTimeBlockEvent(
+            @RequestBody TimeBlockEventInformation timeblockEventInformation) {
         timeBlockService.createTimeBlockEvent(timeblockEventInformation);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PostMapping("delete-timeblock-event")
+    public ResponseEntity<HttpStatus> deleteTimeBlockEvent(
+            @RequestBody TimeBlockEventInformation timeBlockEventInformation) {
+        timeBlockService.deleteTimeBlockEvent(timeBlockEventInformation);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

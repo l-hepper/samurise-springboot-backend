@@ -7,4 +7,5 @@ public interface TimeBlockService {
     TimeBlock getTimeBlockByID(long id);
     void createTimeBlock(TimeBlock timeBlock);
     void createTimeBlockEvent(TimeBlockEventInformation timeBlockEventInformation);
+    boolean deleteTimeBlockEvent(TimeBlockEventInformation timeBlockEventInformation);
 }

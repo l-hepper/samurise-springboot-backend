@@ -3,7 +3,6 @@ package com.lhepper.samurisespringbootbackend.pojo;
 public class TimeBlockEventInformation {
     private String name;
     private int length;
-
     private long timeBlockId;
 
     public String getName() {
