@@ -1,5 +1,6 @@
 package com.lhepper.samurisespringbootbackend.service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,12 @@ public class DayServiceImpl implements DayService {
 
     @Override
     public void createDay(Day day) {
+        LocalDate dateToCheck = day.getDate();
+        Optional<Day> dayToCheck = dayRepository.getDayByDate(dateToCheck);
+        if (dayToCheck.isPresent()) {
+            System.out.println("the day already exists");
+            return;
+        }
         dayRepository.save(day);
     }
 

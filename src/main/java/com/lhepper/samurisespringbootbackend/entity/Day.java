@@ -1,6 +1,7 @@
 package com.lhepper.samurisespringbootbackend.entity;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,6 @@ public class Day {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
 
-    @Column(unique = true)
     private LocalDate date;
 
     @Column(name = "day_start_time")
@@ -48,13 +48,13 @@ public class Day {
 
     // @PrePersist
     // public void prePersist() {
-    //     // Populate TimeBlock entries
-    //     for (int i = 0; i < 5; i++) { // Example: Creating 5 empty TimeBlock entries
-    //         TimeBlock timeBlock = new TimeBlock();
-    //         timeBlock.setDay(this);
-    //         // Set other properties of TimeBlock as needed
-    //         this.timeBlocks.add(timeBlock);
-    //     }
+    // // Populate TimeBlock entries
+    // for (int i = 0; i < 5; i++) { // Example: Creating 5 empty TimeBlock entries
+    // TimeBlock timeBlock = new TimeBlock();
+    // timeBlock.setDay(this);
+    // // Set other properties of TimeBlock as needed
+    // this.timeBlocks.add(timeBlock);
+    // }
     // }
 
     // when a new day is created the timeBlockPlanner structure is updated to
