@@ -31,6 +31,8 @@ public class TaskListServiceImpl implements TaskListService {
         }
     }
 
+    
+
     @Override
     public void deleteTaskList(long id) {
         taskListRepository.deleteById(id);
@@ -39,5 +41,13 @@ public class TaskListServiceImpl implements TaskListService {
     @Override
     public void deleteByTimeBlockId(long id) {
         taskListRepository.deleteByTimeBlock(id);
+    }
+
+    @Override
+    public TaskList getTaskListWithItems(String name) {
+        System.out.println("MADE IT HERE BUT WHY");
+        Optional<TaskList> taskListOption = taskListRepository.getTaskListByName(name);
+
+        return taskListOption.get();
     }
 }

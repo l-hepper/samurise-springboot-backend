@@ -19,7 +19,7 @@ public class TaskList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String name; // will math the block name associated with this task list
+    private String taskListName; // will math the block name associated with this task list
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "day_id", referencedColumnName = "id")
@@ -27,29 +27,34 @@ public class TaskList {
 
     @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "tasklist_id", referencedColumnName = "id")
-    private List<TaskItem> taskItems = new ArrayList<>();
+    private List<TaskItem> taskListItems = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "TaskList [id=" + id + ", name=" + taskListName + ", day=" + day + ", taskListItems=" + taskListItems + "]";
+    }
 
     public TaskList(String name, Day day) {
-        this.name = name;
+        this.taskListName = name;
         this.day = day;
     }
 
     public TaskList() {
     }
 
-    public String getName() {
-        return name;
+    public String getTaskListName() {
+        return taskListName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTaskListName(String name) {
+        this.taskListName = name;
     }
 
-    public List<TaskItem> getTaskItems() {
-        return taskItems;
+    public List<TaskItem> getTaskListItems() {
+        return taskListItems;
     }
 
-    public void setTaskItems(List<TaskItem> taskItems) {
-        this.taskItems = taskItems;
+    public void setTaskListItems(List<TaskItem> taskItems) {
+        this.taskListItems = taskItems;
     }
 }

@@ -29,7 +29,6 @@ public class DayController {
 
     @GetMapping("/get-today/{id}")
     public ResponseEntity<Day> getTodayOrCreate(@PathVariable long id) {
-        System.out.println("Made it here");
         Day day = dayService.getTodayOrCreate();
         return new ResponseEntity<>(day, HttpStatus.OK);
     }

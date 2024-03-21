@@ -1,8 +1,11 @@
 package com.lhepper.samurisespringbootbackend.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import com.lhepper.samurisespringbootbackend.entity.Day;
 import com.lhepper.samurisespringbootbackend.entity.TaskList;
@@ -14,4 +17,8 @@ public interface TaskListRepository extends CrudRepository<TaskList, Long> {
     @Modifying
     @Query("DELETE FROM TaskList WHERE id = :id")
     void deleteByTimeBlock(long id);
+
+    @Transactional
+    @Query("SELECT t FROM TaskList t WHERE t.taskListName = :name")
+    Optional<TaskList> getTaskListByName(String name);
 }

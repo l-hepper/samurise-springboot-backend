@@ -29,6 +29,7 @@ public class DayServiceImpl implements DayService {
     @Override
     public Day getTodayOrCreate() {
         Optional<Day> dayOption = dayRepository.getDayByDate(Day.generateFormattedLocalDate());
+        System.out.println("Made it here");
 
         if (!dayOption.isPresent()) {
             Day today = new Day();

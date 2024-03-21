@@ -1,7 +1,5 @@
 package com.lhepper.samurisespringbootbackend.entity;
 
-import java.util.Date;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class TimeBlock {
@@ -40,6 +39,7 @@ public class TimeBlock {
 
     @Column(name = "start_of_block")
     private boolean startOfBlock;
+
     private String color;
 
     public TimeBlock(String startTime) {
