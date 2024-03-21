@@ -37,6 +37,7 @@ public class TimeBlockServiceImpl implements TimeBlockService {
 
     @Override
     public void createTimeBlockEvent(TimeBlockEventInformation timeBlockEventInformation) {
+        System.out.println("timeBlockEventInformation: " + timeBlockEventInformation);
 
         Optional<TimeBlock> startTimeBlockOption = timeBlockRepository
                 .getTimeBlockByDayIdAndStartTime(timeBlockEventInformation.getDayID(),
@@ -45,9 +46,7 @@ public class TimeBlockServiceImpl implements TimeBlockService {
         TimeBlock startTimeBlock = null;
         if (startTimeBlockOption.isPresent()) {
             startTimeBlock = startTimeBlockOption.get();
-        } else {
-            new ResourceNotFoundException(timeBlockEventInformation.getTimeBlockId());
-        }
+        } 
 
         if (startTimeBlockOption.isPresent()) {
             startTimeBlock = startTimeBlockOption.get();
@@ -55,9 +54,7 @@ public class TimeBlockServiceImpl implements TimeBlockService {
             startTimeBlock.setScheduled(true);
             startTimeBlock.setName(timeBlockEventInformation.getName());
             timeBlockRepository.save(startTimeBlock);
-        } else {
-            new ResourceNotFoundException(timeBlockEventInformation.getTimeBlockId());
-        }
+        } 
 
         long startingBlockId = startTimeBlock.getId();
         int eventLength = timeBlockEventInformation.getLength();
@@ -81,31 +78,32 @@ public class TimeBlockServiceImpl implements TimeBlockService {
 
     @Override
     public boolean deleteTimeBlockEvent(TimeBlockEventInformation timeBlockEventInformation) {
-        Optional<TimeBlock> startTimeBlockOption = timeBlockRepository
-                .getTimeBlockByDayIdAndStartTime(timeBlockEventInformation.getDayID(),
-                        timeBlockEventInformation.getStartTime());
-        if (startTimeBlockOption.isPresent()) {
-            TimeBlock startTimeBlock = startTimeBlockOption.get();
-            startTimeBlock.setStartOfBlock(false);
-            startTimeBlock.setScheduled(false);
-            startTimeBlock.setName(null);
-            timeBlockRepository.save(startTimeBlock);
-        } else {
-            return false;
-        }
+        // Optional<TimeBlock> startTimeBlockOption = timeBlockRepository
+        //         .getTimeBlockByDayIdAndStartTime(timeBlockEventInformation.getDayID(),
+        //                 timeBlockEventInformation.getStartTime());
+        // if (startTimeBlockOption.isPresent()) {
+        //     TimeBlock startTimeBlock = startTimeBlockOption.get();
+        //     startTimeBlock.setStartOfBlock(false);
+        //     startTimeBlock.setScheduled(false);
+        //     startTimeBlock.setName(null);
+        //     timeBlockRepository.save(startTimeBlock);
+        // } else {
+        //     return false;
+        // }
 
-        for (long i = timeBlockEventInformation.getTimeBlockId(); i < timeBlockEventInformation.getTimeBlockId()
-                + timeBlockEventInformation.getLength(); i++) {
-            Optional<TimeBlock> updateTimeBlockOption = timeBlockRepository.findById(i);
-            if (updateTimeBlockOption.isPresent()) {
-                TimeBlock updateTimeBlock = updateTimeBlockOption.get();
-                updateTimeBlock.setScheduled(false);
-                updateTimeBlock.setName(null);
-                timeBlockRepository.save(updateTimeBlock);
-            }
-        }
-        taskListService.deleteTaskList(timeBlockEventInformation.getTaskListId());
+        // for (long i = timeBlockEventInformation.getTimeBlockId(); i < timeBlockEventInformation.getTimeBlockId()
+        //         + timeBlockEventInformation.getLength(); i++) {
+        //     Optional<TimeBlock> updateTimeBlockOption = timeBlockRepository.findById(i);
+        //     if (updateTimeBlockOption.isPresent()) {
+        //         TimeBlock updateTimeBlock = updateTimeBlockOption.get();
+        //         updateTimeBlock.setScheduled(false);
+        //         updateTimeBlock.setName(null);
+        //         timeBlockRepository.save(updateTimeBlock);
+        //     }
+        // }
+        // taskListService.deleteTaskList(timeBlockEventInformation.getTaskListId());
 
+        // return true;
         return true;
     }
 

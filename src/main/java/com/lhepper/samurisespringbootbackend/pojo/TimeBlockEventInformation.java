@@ -3,25 +3,21 @@ package com.lhepper.samurisespringbootbackend.pojo;
 public class TimeBlockEventInformation {
     private String name;
     private int length;
-    private long timeBlockId;
     private long dayID;
-    private long taskListId;
     private String startTime;
 
     public String getStartTime() {
         return startTime;
     }
 
+    @Override
+    public String toString() {
+        return "TimeBlockEventInformation [name=" + name + ", length=" + length + ", dayID=" + dayID + ", startTime="
+                + startTime + "]";
+    }
+
     public void setStartTime(String startTime) {
         this.startTime = startTime;
-    }
-
-    public long getTaskListId() {
-        return taskListId;
-    }
-
-    public void setTaskListId(long taskListId) {
-        this.taskListId = taskListId;
     }
 
     public long getDayID() {
@@ -46,13 +42,5 @@ public class TimeBlockEventInformation {
 
     public void setLength(int length) {
         this.length = length;
-    }
-
-    public long getTimeBlockId() {
-        return timeBlockId;
-    }
-
-    public void setTimeBlockId(long timeBlockId) {
-        this.timeBlockId = timeBlockId;
     }
 }

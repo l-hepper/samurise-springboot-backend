@@ -15,5 +15,5 @@ public interface DayRepository extends CrudRepository<Day, Long> {
 
     @Transactional
     @Query("SELECT d FROM Day d WHERE d.date = :date")
-    Optional<Day> getDayByDate(@Param("date") LocalDate date);
+    Optional<Day> getDayByDate(@Param("date") String date);
 }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lhepper.samurisespringbootbackend.entity.Day;
-import com.lhepper.samurisespringbootbackend.entity.TimeBlock;
 import com.lhepper.samurisespringbootbackend.service.DayService;
 
 @RestController
@@ -25,6 +24,13 @@ public class DayController {
     @GetMapping("/get-day/{id}")
     public ResponseEntity<Day> getDay(@PathVariable long id) {
         Day day = dayService.getDayByID(id);
+        return new ResponseEntity<>(day, HttpStatus.OK);
+    }
+
+    @GetMapping("/get-today/{id}")
+    public ResponseEntity<Day> getTodayOrCreate(@PathVariable long id) {
+        System.out.println("Made it here");
+        Day day = dayService.getTodayOrCreate();
         return new ResponseEntity<>(day, HttpStatus.OK);
     }
 

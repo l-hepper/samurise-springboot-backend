@@ -3,6 +3,7 @@ package com.lhepper.samurisespringbootbackend.entity;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -23,7 +24,13 @@ public class Day {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
 
-    private LocalDate date;
+    private String date;
+
+    @Override
+    public String toString() {
+        return "Day [id=" + id + ", date=" + date + ", dayStartTime=" + dayStartTime + ", dayLength=" + dayLength
+                + ", timeBlocks=" + timeBlocks + ", taskLists=" + taskLists + "]";
+    }
 
     @Column(name = "day_start_time")
     private int dayStartTime;
@@ -38,7 +45,7 @@ public class Day {
     private List<TaskList> taskLists = new ArrayList<>();
 
     public Day() {
-        this.date = LocalDate.now();
+        this.date = generateFormattedLocalDate();
         this.dayStartTime = 9;
         this.dayLength = 8;
         // this.timeBlockPlanner = populateTimeBlockPlanner(dayStartTime, dayLength);
@@ -72,6 +79,12 @@ public class Day {
         }
     }
 
+    public static String generateFormattedLocalDate() {
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return today.format(formatter);
+    }
+
     public long getId() {
         return id;
     }
@@ -80,11 +93,11 @@ public class Day {
         this.id = id;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
