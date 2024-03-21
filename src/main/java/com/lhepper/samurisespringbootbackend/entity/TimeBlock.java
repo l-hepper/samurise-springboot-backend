@@ -24,6 +24,14 @@ public class TimeBlock {
     @Column(name = "start_time")
     private String startTime;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Column(name = "end_time")
     private String endTime;
     private boolean scheduled;

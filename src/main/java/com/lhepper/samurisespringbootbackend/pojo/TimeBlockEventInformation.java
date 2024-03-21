@@ -6,6 +6,15 @@ public class TimeBlockEventInformation {
     private long timeBlockId;
     private long dayID;
     private long taskListId;
+    private String startTime;
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
 
     public long getTaskListId() {
         return taskListId;

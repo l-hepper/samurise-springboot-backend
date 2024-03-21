@@ -1,5 +1,7 @@
 package com.lhepper.samurisespringbootbackend.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,5 +45,11 @@ public class TimeBlockController {
             @RequestBody TimeBlockEventInformation timeBlockEventInformation) {
         timeBlockService.deleteTimeBlockEvent(timeBlockEventInformation);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("get-timeblock-schedule/{dayId}")
+    public ResponseEntity<List<TimeBlock>> getTimeBlockByDayID(@PathVariable long dayId) {
+        List<TimeBlock> timeBlockSchedule = timeBlockService.getTimeBlockSchedule(dayId);
+        return new ResponseEntity<>(timeBlockSchedule, HttpStatus.OK);
     }
 }
