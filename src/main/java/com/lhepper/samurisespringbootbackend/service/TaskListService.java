@@ -1,6 +1,7 @@
 package com.lhepper.samurisespringbootbackend.service;
 
 import com.lhepper.samurisespringbootbackend.entity.TaskList;
+import com.lhepper.samurisespringbootbackend.pojo.TestTaskList;
 
 public interface TaskListService {
     
@@ -8,6 +9,6 @@ public interface TaskListService {
     TaskList getTaskListById(long id);
     void deleteTaskList(long id);
     void deleteByTimeBlockId(long id);
-    TaskList getTaskListWithItems(String name);
+    TestTaskList getTaskListWithItems(String name);
 
 }

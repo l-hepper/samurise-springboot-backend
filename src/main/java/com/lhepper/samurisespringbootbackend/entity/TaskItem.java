@@ -1,5 +1,7 @@
 package com.lhepper.samurisespringbootbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +18,7 @@ public class TaskItem {
 
     @ManyToOne
     @JoinColumn(name = "tasklist_id", referencedColumnName = "id")
+    @JsonIgnore
     private TaskList taskList;
 
     private String name; // name of the task i.e.
@@ -26,7 +29,14 @@ public class TaskItem {
         this.taskList = taskList;
     }
 
-    public TaskItem() {
+    public TaskItem() {};
+
+    public TaskList getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(TaskList taskList) {
+        this.taskList = taskList;
     }
 
     public String getName() {

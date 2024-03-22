@@ -29,7 +29,7 @@ public class Day {
     @Override
     public String toString() {
         return "Day [id=" + id + ", date=" + date + ", dayStartTime=" + dayStartTime + ", dayLength=" + dayLength
-                + ", timeBlocks=" + timeBlocks + ", taskLists=" + taskLists + "]";
+                + ", timeBlocks=" + timeBlocks  + "]";
     }
 
     @Column(name = "day_start_time")
@@ -40,9 +40,6 @@ public class Day {
 
     @OneToMany(mappedBy = "day", cascade = CascadeType.ALL)
     private List<TimeBlock> timeBlocks = new ArrayList<>();
-
-    @OneToMany(mappedBy = "day", cascade = CascadeType.ALL)
-    private List<TaskList> taskLists = new ArrayList<>();
 
     public Day() {
         this.date = generateFormattedLocalDate();

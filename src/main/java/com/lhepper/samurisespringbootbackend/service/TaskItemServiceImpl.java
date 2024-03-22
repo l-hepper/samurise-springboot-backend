@@ -1,13 +1,15 @@
 package com.lhepper.samurisespringbootbackend.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lhepper.samurisespringbootbackend.entity.TaskItem;
+import com.lhepper.samurisespringbootbackend.entity.TaskList;
 import com.lhepper.samurisespringbootbackend.exception.ResourceNotFoundException;
-import com.lhepper.samurisespringbootbackend.pojo.TaskItemInformation;
+import com.lhepper.samurisespringbootbackend.pojo.TaskItemInfo;
 import com.lhepper.samurisespringbootbackend.repository.TaskItemRepository;
 
 @Service
@@ -18,13 +20,6 @@ public class TaskItemServiceImpl implements TaskItemService {
 
     @Autowired
     TaskListService taskListService;
-
-    @Override
-    public void createTaskItem(TaskItemInformation taskItemInformation) {
-        TaskItem taskItem = new TaskItem(taskItemInformation.getName(),
-                taskListService.getTaskListById(taskItemInformation.getTaskListId()));
-        taskItemRepository.save(taskItem);
-    }
 
     @Override
     public void deleteTaskItem(long id) {
@@ -43,6 +38,20 @@ public class TaskItemServiceImpl implements TaskItemService {
         TaskItem taskItem = taskItemRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         taskItem.setComplete(false);
         return taskItemRepository.save(taskItem);
+    }
+
+    @Override
+    public TaskItem createTaskItem(TaskItemInfo taskItemInfo) {
+        TaskList taskList = taskListService.getTaskListById(taskItemInfo.getTaskListId());
+        TaskItem newTask = new TaskItem(taskItemInfo.getName(), taskList);
+        taskItemRepository.save(newTask);
+        return newTask;
+    }
+
+    @Override
+    public List<TaskItem> getTaskItemsByListId(long id) {
+        List<TaskItem> tasks = taskItemRepository.getTaskItems(id);
+        return tasks;
     }
 
 }

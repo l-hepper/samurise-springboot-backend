@@ -18,7 +18,5 @@ public interface TaskListRepository extends CrudRepository<TaskList, Long> {
     @Query("DELETE FROM TaskList WHERE id = :id")
     void deleteByTimeBlock(long id);
 
-    @Transactional
-    @Query("SELECT t FROM TaskList t WHERE t.taskListName = :name")
-    Optional<TaskList> getTaskListByName(String name);
+    Optional<TaskList> findByTaskListName(String name);
 }
