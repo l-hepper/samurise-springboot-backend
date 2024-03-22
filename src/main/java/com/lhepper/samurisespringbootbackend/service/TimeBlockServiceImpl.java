@@ -76,6 +76,8 @@ public class TimeBlockServiceImpl implements TimeBlockService {
 
     }
 
+    
+
     @Override
     public boolean deleteTimeBlockEvent(TimeBlockEventInformation timeBlockEventInformation) {
         // Optional<TimeBlock> startTimeBlockOption = timeBlockRepository
@@ -115,5 +117,33 @@ public class TimeBlockServiceImpl implements TimeBlockService {
         }
         return schedule.get();
 
+    }
+
+    @Override
+    public void updateTimeBlockColor(TimeBlockEventInformation timeBlockEventInformation) {
+        System.out.println(timeBlockEventInformation);
+        Optional<TimeBlock> startTimeBlockOption = timeBlockRepository
+                .getTimeBlockByDayIdAndStartTime(timeBlockEventInformation.getDayID(),
+                        timeBlockEventInformation.getStartTime());
+
+        TimeBlock startTimeBlock = null;
+        if (startTimeBlockOption.isPresent()) {
+            startTimeBlock = startTimeBlockOption.get();
+            startTimeBlock.setColor(timeBlockEventInformation.getColor());
+            timeBlockRepository.save(startTimeBlock);
+        }
+
+        long startingBlockId = startTimeBlock.getId();
+        int eventLength = timeBlockEventInformation.getLength();
+        for (long i = startingBlockId; i < startingBlockId + eventLength; i++) {
+
+            Optional<TimeBlock> updateTimeBlockOption = timeBlockRepository.findById(i);
+
+            if (updateTimeBlockOption.isPresent()) {
+                TimeBlock updateTimeBlock = updateTimeBlockOption.get();
+                updateTimeBlock.setColor(timeBlockEventInformation.getColor());
+                timeBlockRepository.save(updateTimeBlock);
+            }
+        }
     }
 }

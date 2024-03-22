@@ -5,6 +5,15 @@ public class TimeBlockEventInformation {
     private int length;
     private long dayID;
     private String startTime;
+    private String color;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     public String getStartTime() {
         return startTime;
