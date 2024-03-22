@@ -31,6 +31,14 @@ public class TaskItem {
 
     public TaskItem() {};
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public TaskList getTaskList() {
         return taskList;
     }

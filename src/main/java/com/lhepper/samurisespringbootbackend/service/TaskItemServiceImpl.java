@@ -29,7 +29,11 @@ public class TaskItemServiceImpl implements TaskItemService {
     @Override
     public TaskItem setTaskItemToComplete(long id) {
         TaskItem taskItem = taskItemRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
-        taskItem.setComplete(true);
+        if (!taskItem.isComplete()) {
+            taskItem.setComplete(true);
+        } else {
+            taskItem.setComplete(false);
+        }
         return taskItemRepository.save(taskItem);
     }
 

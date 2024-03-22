@@ -1,9 +1,18 @@
 package com.lhepper.samurisespringbootbackend.pojo;
 
 public class TaskItemInfo {
+    private long id;
     private String name;
     private boolean complete = false;
     private long taskListId;
+
+    public long getId() {
+        return this.id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
